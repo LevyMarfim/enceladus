@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class YourFormType extends AbstractType
 {
+    // In YourFormType.php
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -19,7 +20,10 @@ class YourFormType extends AbstractType
                     'Option 3' => 'option3',
                 ],
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
+                'attr' => [
+                    'class' => 'js-select2' // Add a class for easier targeting
+                ],
             ]);
     }
 }

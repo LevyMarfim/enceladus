@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 {# templates/your_template.html.twig #}
 
-
-{{ form_start(form) }}
-    {{ form_label(form.options) }}
-    {{ form_widget(form.options) }}
-    {{ form_errors(form.options) }}
-    <button type="submit">Submit</button>
-{{ form_end(form) }}
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_label(form.options) }}
+        {{ form_widget(form.options) }}
+        {{ form_errors(form.options) }}
+        <button type="submit">Submit</button>
+    {{ form_end(form) }}
+{% endblock body %}
 

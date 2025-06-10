@@ -5,7 +5,9 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class YourFormType extends AbstractType
 {
@@ -15,15 +17,21 @@ class YourFormType extends AbstractType
         $builder
             ->add('options', ChoiceType::class, [
                 'choices' => [
-                    'Option 1' => 'option1',
-                    'Option 2' => 'option2',
-                    'Option 3' => 'option3',
+                    'Orange' => 'option1',
+                    'Banana' => 'option2',
+                    'Grape' => 'option3',
+                    'Melon' => 'option4',
+                    'Strawberry' => 'option5',
+                    'Mango' => 'option6',
+                    'Grape' => 'option7',
                 ],
                 'multiple' => true,
                 'expanded' => false,
-                'attr' => [
-                    'class' => 'js-select2' // Add a class for easier targeting
-                ],
+                'label' => 'Select Options',
+                'autocomplete' => true,
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'save'],
             ]);
     }
 }

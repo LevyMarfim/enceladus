@@ -1,15 +1,4 @@
 services:
-  php:
-    container_name: enceladus-php
-    build:
-      context: ./docker/php
-      dockerfile: Dockerfile
-    restart: always
-    volumes:
-      - ./:/var/www
-    networks:
-      - enceladus_network
-  
   nginx:
     container_name: enceladus-nginx
     build:
@@ -23,8 +12,23 @@ services:
       - ./:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - enceladus_network
-  
+      enceladus_network:
+        ipv4_address: 172.20.0.10
+
+  php:
+    container_name: enceladus-php
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    restart: always
+    # depends_on:
+    #   - postgres
+    volumes:
+      - ./:/var/www
+    networks:
+      enceladus_network:
+        ipv4_address: 172.20.0.20
+
   postgres:
     container_name: enceladus-postgres
     image: postgres:alpine
@@ -32,18 +36,25 @@ services:
     volumes:
       - enceladus_psql_data:/var/lib/postgresql/data:rw
     networks:
-      - enceladus_network
+      enceladus_network:
+        ipv4_address: 172.20.0.30
     ports:
       - '5432:5432'
     environment:
-      # POSTGRES_DB: enceladus
-      # POSTGRES_PASSWORD: enceladus
-      # POSTGRES_USER: enceladus
-      POSTGRES_URL: ${DATABASE_URL}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      # POSTGRES_URL: ${DATABASE_URL}
 
 networks:
   enceladus_network:
+    name: enceladus_network
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
 
 volumes:
   enceladus_psql_data:

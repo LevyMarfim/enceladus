@@ -5,10 +5,51 @@
 /* From below is new code apart from original */
 
 .bg-grd {
-    background: #EEAECA;
-    background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .login-container {
     max-width: 400px;
+}
+
+
+.btn-grad {
+    background-image: linear-gradient(to right, #F2994A 0%, #F2C94C  51%, #F2994A  100%)
+}
+
+.btn-grad {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    /* text-transform: uppercase; */
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    color: #494949;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #000;
+    text-decoration: none;
+}
+
+.icon {
+    width: auto;
+    height: 8em;
+    color: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* https://grabient.com/HQVgzAHANKDsCcMQAYCMUC0rhldHs6GywATMvqvLDKajTgGxhSnCMQvKvDLwAsMXCCFoo2fqRFZQ8CEA/ */
+
+.bg-default {
+    background: linear-gradient(225deg, rgba(130, 205, 224, 1.000) 0.000%, rgba(149, 201, 222, 1.000) 16.667%, rgba(174, 200, 216, 1.000) 33.333%, rgba(202, 201, 208, 1.000) 50.000%, rgba(232, 206, 199, 1.000) 66.667%, rgba(255, 213, 194, 1.000) 83.333%, rgba(255, 221, 192, 1.000) 100.000%);
+    min-height: 100vh;
 }

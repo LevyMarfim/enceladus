@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Wiggadom{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/aaravos/projects/enceladus/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/aaravos/projects/enceladus/templates/home/index.html.twig</code></li>
-    </ul>
-
-    <h1>
-        <a href="{{ path('app_test') }}">teste</a>
-    </h1>
+<div class="bg-default d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <a href="{{ path('app_home') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:baseline-settings" class="icon"/>
+                    <h2>Settings</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="carbon:finance" class="icon"/>
+                    <h2>Assets</h2>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

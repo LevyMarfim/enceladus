@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block body %}
+<div class="bg-default d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <a href="{{ path('app_list_transactions') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="lucide:list" class="icon"/>
+                    <h2>List Transactions</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_add_transactions') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="hugeicons:wallet-add-02" class="icon"/>
+                    <h2>Add Transaction</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

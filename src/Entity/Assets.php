@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AssetsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AssetsRepository::class)]
@@ -21,6 +23,17 @@ class Assets
 
     #[ORM\Column(length: 32)]
     private ?string $type = null;
+
+    /**
+     * @var Collection<int, Transactions>
+     */
+    #[ORM\OneToMany(targetEntity: Transactions::class, mappedBy: 'ticker')]
+    private Collection $transaction;
+
+    public function __construct()
+    {
+        $this->transaction = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,36 @@ class Assets
     public function setType(string $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Transactions>
+     */
+    public function getTransaction(): Collection
+    {
+        return $this->transaction;
+    }
+
+    public function addTransaction(Transactions $transaction): static
+    {
+        if (!$this->transaction->contains($transaction)) {
+            $this->transaction->add($transaction);
+            $transaction->setTicker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransaction(Transactions $transaction): static
+    {
+        if ($this->transaction->removeElement($transaction)) {
+            // set the owning side to null (unless already changed)
+            if ($transaction->getTicker() === $this) {
+                $transaction->setTicker(null);
+            }
+        }
 
         return $this;
     }

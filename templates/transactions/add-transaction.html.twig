@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block body %}
+<div class="bg-default d-flex align-items-center">
+    <div class="container">
+        <h1>Adicionar movimentação</h1>
+        <p>Adicione uma movimentação.</p>
+        <div>
+            {{ form_start(form) }}
+                {# {{ form_errors(form) }}
+                <div class="row">
+                    {{ form_label(form.ticker) }}
+                    {{ form_widget(form.ticker) }}
+                </div>
+                <div class="row">
+                    {{ form_label(form.company) }}
+                    {{ form_widget(form.company) }}
+                </div>
+                <div class="row">
+                    {{ form_label(form.type) }}
+                    {{ form_widget(form.type) }}
+                </div> #}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

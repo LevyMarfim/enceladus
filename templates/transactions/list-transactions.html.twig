@@ -29,8 +29,8 @@
                         <td>{{ transaction.date|date('d/m/Y') }}</td>
                         <td>{{ transaction.settlement|date('d/m/Y') }}</td>
                         <td>{{ transaction.transaction|date('d/m/Y') }}</td>
-                        <td>{{ transaction.operation }}</td>
-                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.operation.value }}</td>
+                        <td>{{ transaction.type.value }}</td>
                         <td>{{ transaction.entry }}</td>
                         <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
                         <td>{{ transaction.notaFiscal }}</td>

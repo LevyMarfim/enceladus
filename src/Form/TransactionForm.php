@@ -4,8 +4,11 @@ namespace App\Form;
 
 use App\Entity\Assets;
 use App\Entity\Transactions;
+use App\Enums\OperationEnum;
+use App\Enums\TransactionTypeEnum;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,8 +21,20 @@ class TransactionForm extends AbstractType
             ->add('date')
             ->add('settlement')
             ->add('transaction')
-            ->add('operation')
-            ->add('type')
+            ->add('operation', EnumType::class, [
+                'class' => OperationEnum::class,
+                'choice_label' => function (OperationEnum $operation): string {
+                    // return ucfirst($operation->value);
+                    return $operation->value;
+                },
+            ])
+            ->add('type', EnumType::class, [
+                'class' => TransactionTypeEnum::class,
+                'choice_label' => function (TransactionTypeEnum $transactionType): string {
+                    // return ucfirst($operation->value);
+                    return $transactionType->value;
+                },
+            ])
             ->add('entry')
             ->add('value')
             ->add('notaFiscal')

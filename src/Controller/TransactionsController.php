@@ -16,7 +16,7 @@ final class TransactionsController extends AbstractController
     #[Route('/transactions', name: 'app_transactions')]
     public function index(): Response
     {
-        return $this->render('transactions/index.html.twig', [
+        return $this->render('transactions/transactions-index.html.twig', [
             'controller_name' => 'TransactionsController',
         ]);
     }

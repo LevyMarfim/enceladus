@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enums\OperationEnum;
+use App\Enums\TransactionTypeEnum;
 use App\Repository\TransactionsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,10 +26,10 @@ class Transactions
     private ?\DateTime $transaction = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $operation = null;
+    private ?OperationEnum $operation = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?TransactionTypeEnum $type = null;
 
     #[ORM\Column(length: 255)]
     private ?string $entry = null;
@@ -88,24 +90,24 @@ class Transactions
         return $this;
     }
 
-    public function getOperation(): ?string
+    public function getOperation(): ?OperationEnum
     {
         return $this->operation;
     }
 
-    public function setOperation(string $operation): static
+    public function setOperation(OperationEnum $operation): static
     {
         $this->operation = $operation;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?TransactionTypeEnum
     {
         return $this->type;
     }
 
-    public function setType(string $type): static
+    public function setType(TransactionTypeEnum $type): static
     {
         $this->type = $type;
 

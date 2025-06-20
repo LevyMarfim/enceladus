@@ -16,7 +16,7 @@ final class AssetController extends AbstractController
     #[Route('/asset', name: 'app_asset')]
     public function index(): Response
     {
-        return $this->render('asset/index.html.twig', [
+        return $this->render('asset/assets-index.html.twig', [
             'controller_name' => 'AssetController',
         ]);
     }
@@ -24,19 +24,15 @@ final class AssetController extends AbstractController
     #[Route('/asset/add', name: 'app_add_asset')]
     public function addAsset(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AssetForm::class);
+        $asset = new Assets();
+
+        $form = $this->createForm(AssetForm::class, $asset);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $asset = new Assets();
-
-            $asset->setTicker($form->get('ticker')->getData());
-            $asset->setCompany($form->get('company')->getData());
-            $asset->setType($form->get('type')->getData());
-
             $entityManager->persist($asset);
-            $entityManager->flush($asset);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_home');
         }
@@ -49,7 +45,7 @@ final class AssetController extends AbstractController
     #[Route('/asset/assets', name: 'app_list_asset')]
     public function listAsset(AssetsRepository $repository): Response
     {
-        return $this->render('asset/list-asset.html.twig', [
+        return $this->render('asset/list-assets.html.twig', [
             'assets' => $repository->findAll(),
         ]);
     }

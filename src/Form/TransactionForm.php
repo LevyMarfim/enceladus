@@ -62,6 +62,9 @@ class TransactionForm extends AbstractType
             ])
             ->add('adicionar', SubmitType::class,[
                 'label' => 'Adicionar transação',
+                'attr' =>[
+                    'class' => 'btn btn-primary'
+                ]
             ])
         ;
     }

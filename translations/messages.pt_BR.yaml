@@ -1,0 +1,9 @@
+app:
+  welcome: 'Bem-vindo ao Enceladus!'
+  date_format: 'd/m/Y'
+  transactions:
+    add: 'Adicionar transação'
+    list: 'Lista de transações'
+  buttons:
+    save: 'Salvar'
+    cancel: 'Cancelar'

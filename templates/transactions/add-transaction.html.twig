@@ -10,9 +10,11 @@
         <div class="mt-5">
             {{ form_start(form) }}
                 {{ form_errors(form) }}
+                {# row 1/2 #}
                 <div class="row">
+                    {# col 1/2 #}
                     <div class="col">
-                        <div class="row mb-3">
+                        <div class="row align-items-center mb-3">
                             <div class="col-2 text-end">
                                 {{ form_label(form.settlement) }}
                             </div>
@@ -20,7 +22,7 @@
                                 {{ form_widget(form.settlement) }}
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row align-items-center mb-3">
                             <div class="col-2 text-end">
                                 {{ form_label(form.transaction) }}
                             </div>
@@ -28,19 +30,19 @@
                                 {{ form_widget(form.transaction) }}
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row align-items-center mb-3">
                             <div class="col-2 text-end">
                                 {{ form_label(form.operation) }}
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 {{ form_widget(form.operation) }}
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row align-items-center mb-3">
                             <div class="col-2 text-end">
                                 {{ form_label(form.type) }}
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 {{ form_widget(form.type) }}
                             </div>
                         </div>
@@ -48,11 +50,12 @@
                             <div class="col-2 text-end">
                                 {{ form_label(form.entry) }}
                             </div>
-                            <div class="col-2">
+                            <div class="col-10">
                                 {{ form_widget(form.entry) }}
                             </div>
                         </div>
                     </div>
+                    {# col 2/2 #}
                     <div class="col">
                         <div class="row mb-3">
                             <div class="col-2 text-end">
@@ -96,6 +99,7 @@
                         </div>
                     </div>
                 </div>
+                {# row 2/2 #}
                 <div class="row mt-3">
                     <div class="col-3">
                         {{ form_widget(form.adicionar) }}

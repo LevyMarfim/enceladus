@@ -3,9 +3,21 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 export default class extends Controller {
+    static values = {
+        altFormat: { type: String, default: 'Y-m-d' },
+        altInput: { type: Boolean, default: false },
+        dateFormat: { type: String, default: 'Y-m-d' },
+        // minDate: { type: String, default: null },
+        // maxDate: { type: String, default: null },
+    }
+
     connect() {
         flatpickr(this.element, {
-            dateFormat: 'd/M/Y',
+            dateFormat: this.dateFormatValue,
+            altFormat: this.altFormatValue,
+            altInput: this.altInputValue,
+            // minDate: this.minDateValue,
+            // maxDate: this.maxDateValue,
             allowInput: true,
             locale: {
                 firstDayOfWeek: 0,
@@ -19,5 +31,11 @@ export default class extends Controller {
                 },
             }
         });
+    }
+
+    disconnect() {
+        if (this.picker) {
+            this.picker.destroy();
+        }
     }
 }

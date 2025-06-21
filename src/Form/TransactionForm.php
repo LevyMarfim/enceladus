@@ -19,13 +19,14 @@ class TransactionForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('date')
             ->add('settlement', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
                     'data-controller' => 'datepicker',
-                    'autocomplete' => 'off',
+                    'data-datepicker-alt-format-value' => 'd/M/Y',
+                    'data-datepicker-alt-input-value' => true,
+                    // 'autocomplete' => 'on',
                     'placeholder' => 'dd/mm/aaaa',
                 ],
             ])
@@ -34,7 +35,8 @@ class TransactionForm extends AbstractType
                 'html5' => false,
                 'attr' => [
                     'data-controller' => 'datepicker',
-                    'autocomplete' => 'off',
+                    'data-datepicker-alt-format-value' => 'd/M/Y',
+                    'data-datepicker-alt-input-value' => true,
                     'placeholder' => 'dd/mm/aaaa',
                 ],
             ])

@@ -29,10 +29,20 @@ return [
         'version' => '2.11.8',
     ],
     'bootstrap/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.6',
+        'version' => '5.3.7',
         'type' => 'css',
     ],
     'bootstrap/dist/js/bootstrap.bundle.js' => [
-        'version' => '5.3.6',
+        'version' => '5.3.7',
+    ],
+    'jquery' => [
+        'version' => '3.7.1',
+    ],
+    'flatpickr' => [
+        'version' => '4.6.13',
+    ],
+    'flatpickr/dist/flatpickr.min.css' => [
+        'version' => '4.6.13',
+        'type' => 'css',
     ],
 ];

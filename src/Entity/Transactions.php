@@ -40,7 +40,7 @@ class Transactions
     #[ORM\Column(length: 32, nullable: true)]
     private ?string $notaFiscal = null;
 
-    #[ORM\ManyToOne(inversedBy: 'amount')]
+    #[ORM\ManyToOne(inversedBy: 'transaction')]
     private ?Assets $ticker = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]

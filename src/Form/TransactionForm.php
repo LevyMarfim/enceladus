@@ -8,6 +8,7 @@ use App\Enums\OperationEnum;
 use App\Enums\TransactionTypeEnum;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,20 +19,34 @@ class TransactionForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
-            ->add('settlement')
-            ->add('transaction')
+            // ->add('date')
+            ->add('settlement', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => [
+                    'data-controller' => 'datepicker',
+                    'autocomplete' => 'off',
+                    'placeholder' => 'dd/mm/aaaa',
+                ],
+            ])
+            ->add('transaction', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => [
+                    'data-controller' => 'datepicker',
+                    'autocomplete' => 'off',
+                    'placeholder' => 'dd/mm/aaaa',
+                ],
+            ])
             ->add('operation', EnumType::class, [
                 'class' => OperationEnum::class,
                 'choice_label' => function (OperationEnum $operation): string {
-                    // return ucfirst($operation->value);
                     return $operation->value;
                 },
             ])
             ->add('type', EnumType::class, [
                 'class' => TransactionTypeEnum::class,
                 'choice_label' => function (TransactionTypeEnum $transactionType): string {
-                    // return ucfirst($operation->value);
                     return $transactionType->value;
                 },
             ])
@@ -46,7 +61,7 @@ class TransactionForm extends AbstractType
                 'required' => false,
             ])
             ->add('adicionar', SubmitType::class,[
-                'label' => 'Adicionar asset',
+                'label' => 'Adicionar transação',
             ])
         ;
     }

@@ -11,13 +11,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Constraints;
 
 class TransactionForm extends AbstractType
 {
@@ -138,7 +136,7 @@ class TransactionForm extends AbstractType
                 'label' => 'Adicionar transação',
                 'attr' =>[
                     'class' => 'btn btn-primary'
-                ]
+                ],
             ])
         ;
     }

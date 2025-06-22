@@ -38,7 +38,7 @@ class Transactions
     private ?float $value = null;
 
     #[ORM\Column(length: 32, nullable: true)]
-    private ?string $notaFiscal = null;
+    private ?string $invoice = null;
 
     #[ORM\ManyToOne(inversedBy: 'transaction')]
     private ?Assets $ticker = null;
@@ -138,14 +138,14 @@ class Transactions
         return $this;
     }
 
-    public function getNotaFiscal(): ?string
+    public function getInvoice(): ?string
     {
-        return $this->notaFiscal;
+        return $this->invoice;
     }
 
-    public function setNotaFiscal(?string $notaFiscal): static
+    public function setInvoice(?string $invoice): static
     {
-        $this->notaFiscal = $notaFiscal;
+        $this->invoice = $invoice;
 
         return $this;
     }

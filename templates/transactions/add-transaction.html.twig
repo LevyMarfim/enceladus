@@ -14,87 +14,100 @@
                 <div class="row">
                     {# col 1/2 #}
                     <div class="col">
-                        <div class="row align-items-center mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.settlement) }}
-                            </div>
-                            <div class="col-3 text-start min">
-                                {{ form_widget(form.settlement) }}
-                            </div>
-                        </div>
-                        <div class="row align-items-center mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.transaction) }}
-                            </div>
-                            <div class="col-3">
-                                {{ form_widget(form.transaction) }}
-                            </div>
-                        </div>
-                        <div class="row align-items-center mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.operation) }}
-                            </div>
-                            <div class="col-3">
-                                {{ form_widget(form.operation) }}
-                            </div>
-                        </div>
-                        <div class="row align-items-center mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.type) }}
-                            </div>
-                            <div class="col-3">
-                                {{ form_widget(form.type) }}
-                            </div>
-                        </div>
+                        {# Settlement #}
                         <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.entry) }}
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.settlement) }}</span>
+                                    {{ form_widget(form.settlement) }}
+                                </div>
                             </div>
-                            <div class="col-10">
-                                {{ form_widget(form.entry) }}
+                        </div>
+                        {# Transaction #}
+                        <div class="row mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.transaction) }}</span>
+                                    {{ form_widget(form.transaction) }}
+                                </div>
+                            </div>
+                        </div>
+                        {# Operation #}
+                        <div class="row mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.operation) }}</span>
+                                    {{ form_widget(form.operation) }}
+                                </div>
+                            </div>
+                        </div>
+                        {# Type #}
+                        <div class="row mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.type) }}</span>
+                                    {{ form_widget(form.type) }}
+                                </div>
+                            </div>
+                        </div>
+                        {# entry #}
+                        <div class="row mb-3">
+                            <div class="col-12 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-2">{{ form_label(form.entry) }}</span>
+                                    {{ form_widget(form.entry) }}
+                                </div>
                             </div>
                         </div>
                     </div>
                     {# col 2/2 #}
                     <div class="col">
-                        <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.value) }}
-                            </div>
-                            <div class="col-2 text-end">
-                                {{ form_widget(form.value) }}
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.notaFiscal) }}
-                            </div>
-                            <div class="col-2 text-end">
-                                {{ form_widget(form.notaFiscal) }}
+                        {# Value #}
+                        <div class="row align-items-center mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.value) }}</span>
+                                    <span class="input-group-text">R$</span>
+                                    {{ form_widget(form.value) }}
+                                </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.amount) }}
-                            </div>
-                            <div class="col-2 text-end">
-                                {{ form_widget(form.amount) }}
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.comment) }}
-                            </div>
-                            <div class="col-2 text-end">
-                                {{ form_widget(form.comment) }}
+                        {# Invoice #}
+                        <div class="row align-items-center mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.invoice) }}</span>
+                                    <span class="input-group-text">NF</span>
+                                    {{ form_widget(form.invoice) }}
+                                </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-2 text-end">
-                                {{ form_label(form.ticker) }}
+                        {# Amount #}
+                        <div class="row align-items-center mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.amount) }}</span>
+                                    <span class="input-group-text">un</span>
+                                    {{ form_widget(form.amount) }}
+                                </div>
                             </div>
-                            <div class="col-2 text-end">
-                                {{ form_widget(form.ticker) }}
+                        </div>
+                        {# Ticker #}
+                        <div class="row align-items-center mb-3">
+                            <div class="col-5 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-5">{{ form_label(form.ticker) }}</span>
+                                    {{ form_widget(form.ticker) }}
+                                </div>
+                            </div>
+                        </div>
+                        {# comment #}
+                        <div class="row align-items-center mb-3">
+                            <div class="col-12 pe-0">
+                                <div class="input-group">
+                                    <span class="input-group-text col-2">{{ form_label(form.comment) }}</span>
+                                    {{ form_widget(form.comment) }}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -10,10 +10,14 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Constraints;
 
 class TransactionForm extends AbstractType
 {
@@ -25,6 +29,7 @@ class TransactionForm extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
+                    'class' => 'text-center',
                     'data-controller' => 'datepicker',
                     'data-datepicker-alt-format-value' => 'd/M/Y',
                     'data-datepicker-alt-input-value' => true,
@@ -36,6 +41,7 @@ class TransactionForm extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
+                    'class' => 'text-center',
                     'data-controller' => 'datepicker',
                     'data-datepicker-alt-format-value' => 'd/M/Y',
                     'data-datepicker-alt-input-value' => true,
@@ -49,7 +55,7 @@ class TransactionForm extends AbstractType
                     return $operation->value;
                 },
                 'attr' => [
-                    'class' => 'form-select',
+                    'class' => 'form-select text-center',
                 ],
             ])
         // Tipo da operação
@@ -59,7 +65,7 @@ class TransactionForm extends AbstractType
                     return $transactionType->value;
                 },
                 'attr' => [
-                    'class' => 'form-select',
+                    'class' => 'form-select text-center',
                 ],
             ])
         // Descrição da operação
@@ -70,14 +76,63 @@ class TransactionForm extends AbstractType
                 ],
             ])
         // Valor da operação
-            ->add('value')
-            ->add('notaFiscal')
-            ->add('amount')
-            ->add('comment')
+            ->add('value', NumberType::class, [
+                'html5' => false,
+                'scale' => 2,
+                'rounding_mode' => \NumberFormatter::ROUND_HALFUP,
+                'attr' => [
+                    'class' => 'form-control text-end',
+                    'inputmode' => 'decimal',
+                    'pattern' => '^\d+(\.\d{1,2})?$',
+                    // 'step' => '0.01',
+                    'oninput' => "
+                            this.value = this.value
+                                .replace(/[^0-9.]/g, '') // Remove non-digits
+                                .replace(/(\..*)\./g, '$1') // Allow only one decimal point
+                                .replace(/^(\d*\.\d{0,2}).*$/, '$1'); // Limit to 2 decimal places
+                        ",
+                    'placeholder' => '0.00'
+                ],
+            ])
+        // Número da NF
+            ->add('invoice', IntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'inputmode' => 'numeric',
+                    'pattern' => '\d*',
+                    'oninput' => "this.value=this.value.replace(/[^0-9]/g,'');",
+                    'inputmode' => 'numeric',
+                    'min' => 0,
+                    'placeholder' => '000000',
+                ],
+            ])
+        // Quantidade de compra/venda do ativo
+            ->add('amount', IntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'inputmode' => 'numeric',
+                    'pattern' => '\d*',
+                    'oninput' => "this.value=this.value.replace(/[^0-9]/g,'');",
+                    'inputmode' => 'numeric',
+                    'min' => 0,
+                    'placeholder' => '0000',
+                ],
+            ])
+        // Add comment
+            ->add('comment', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Enter a comment',
+                ],
+            ])
+        // Listra os tickers cadastrados
             ->add('ticker', EntityType::class, [
                 'class' => Assets::class,
                 'choice_label' => 'ticker',
                 'required' => false,
+                'attr' => [
+                    'class' => 'form-select',
+                ],
             ])
             ->add('adicionar', SubmitType::class,[
                 'label' => 'Adicionar transação',

@@ -10,7 +10,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>ID</th>
+                    {# <th>Date</th> #}
                     <th>Settlement</th>
                     <th>Transaction</th>
                     <th>Operation</th>
@@ -26,14 +27,15 @@
             <tbody>
                 {% for transaction in transactions %}
                     <tr>
-                        <td>{{ transaction.date|date('d/m/Y') }}</td>
+                        <td>{{ transaction.id }}</td>
+                        {# <td>{{ transaction.date|date('d/m/Y') }}</td> #}
                         <td>{{ transaction.settlement|date('d/m/Y') }}</td>
                         <td>{{ transaction.transaction|date('d/m/Y') }}</td>
                         <td>{{ transaction.operation.value }}</td>
                         <td>{{ transaction.type.value }}</td>
                         <td>{{ transaction.entry }}</td>
                         <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
-                        <td>{{ transaction.notaFiscal }}</td>
+                        <td>{{ transaction.invoice }}</td>
                         <td>{{ transaction.amount }}</td>
                         <td>{{ transaction.comment }}</td>
                         {# <td>{{ transaction.ticker }}</td> #}

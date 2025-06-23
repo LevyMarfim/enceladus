@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Transactions;
 use App\Form\TransactionForm;
 use App\Repository\TransactionsRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,7 @@ final class TransactionsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
 
+            $transaction->setDate(new DateTime());
             $entityManager->persist($transaction);
             $entityManager->flush();
 

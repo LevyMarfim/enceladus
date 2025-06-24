@@ -9,3 +9,8 @@ import DatepickerController from './controllers/datepicker_controller.js';
 
 const application = Application.start();
 application.register('datepicker', DatepickerController);
+
+import TickerValidationController from './controllers/ticker_validation_controller.js';
+
+// const application = Application.start();
+application.register('ticker-validation', TickerValidationController);

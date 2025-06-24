@@ -9,7 +9,7 @@
         
         <table class="table">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>ID</th>
                     {# <th>Date</th> #}
                     <th>Settlement</th>
@@ -26,14 +26,14 @@
             </thead>
             <tbody>
                 {% for transaction in transactions %}
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ transaction.id }}</td>
                         {# <td>{{ transaction.date|date('d/m/Y') }}</td> #}
                         <td>{{ transaction.settlement|date('d/m/Y') }}</td>
                         <td>{{ transaction.transaction|date('d/m/Y') }}</td>
                         <td>{{ transaction.operation.value }}</td>
                         <td>{{ transaction.type.value }}</td>
-                        <td>{{ transaction.entry }}</td>
+                        <td class="text-start">{{ transaction.entry }}</td>
                         <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
                         <td>{{ transaction.invoice }}</td>
                         <td>{{ transaction.amount }}</td>

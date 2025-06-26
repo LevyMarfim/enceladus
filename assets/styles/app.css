@@ -58,13 +58,6 @@ body {
     min-height: 100vh;
 }
 
-/* .flatpickr-input {
-    padding: 0.375rem 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+.table-fs-1 {
+    font-size: 12px;
 }
-
-.flatpickr-calendar {
-    font-family: inherit;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-} */

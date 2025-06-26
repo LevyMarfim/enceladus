@@ -49,6 +49,9 @@ class Transactions
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $comment = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $unitPrice = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,6 +185,18 @@ class Transactions
     public function setComment(?string $comment): static
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getUnitPrice(): ?float
+    {
+        return $this->unitPrice;
+    }
+
+    public function setUnitPrice(?float $unitPrice): static
+    {
+        $this->unitPrice = $unitPrice;
 
         return $this;
     }

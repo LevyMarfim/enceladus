@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <h1>Transactions</h1>
         
-        <table class="table">
+        <table class="table table-fs-1">
             <thead>
                 <tr class="text-center">
                     <th>ID</th>
@@ -20,6 +20,7 @@
                     <th>Value</th>
                     <th>Nota Fiscal</th>
                     <th>Amount</th>
+                    <th>Unit Price</th>
                     <th>Comment</th>
                     <th>Ticker</th>
                 </tr>
@@ -37,6 +38,7 @@
                         <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
                         <td>{{ transaction.invoice }}</td>
                         <td>{{ transaction.amount }}</td>
+                        <td>{{ transaction.unitPrice }}</td>
                         <td>{{ transaction.comment }}</td>
                         {# <td>{{ transaction.ticker }}</td> #}
                         <td>{{ transaction.ticker ? transaction.ticker.getTicker() : '' }}</td>

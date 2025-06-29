@@ -7,10 +7,10 @@ const app = startStimulusApp();
 import { Application } from '@hotwired/stimulus';
 import DatepickerController from './controllers/datepicker_controller.js';
 
-const application = Application.start();
-application.register('datepicker', DatepickerController);
+// const application = Application.start();
+app.register('datepicker', DatepickerController);
 
 import TickerValidationController from './controllers/ticker_validation_controller.js';
 
 // const application = Application.start();
-application.register('ticker-validation', TickerValidationController);
+app.register('ticker-validation', TickerValidationController);

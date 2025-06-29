@@ -16,6 +16,12 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'controllers/theme' => [
+        'path' => './assets/controllers/theme_controller.js',
+    ],
+    'controllers/sidebar' => [
+        'path' => './assets/controllers/sidebar_controller.js',
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
     ],

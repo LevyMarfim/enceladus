@@ -1,21 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wiggadom{% endblock %}
+{% block title %}Configurações{% endblock %}
 
 {% block body %}
 <div class="bg-default d-flex align-items-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col text-center">
-                <a href="{{ path('app_home') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="material-symbols-light:home-outline" class="icon"/>
-                    <h2>Página Inicial</h2>
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="mingcute:department-fill" class="icon"/>
+                    <h2>Setores</h2>
                 </a>
             </div>
             <div class="col text-center">
                 <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="mdi:users" class="icon"/>
-                    <h2>Usuários</h2>
+                    <twig:ux:icon name="mdi:company" class="icon"/>
+                    <h2>Empresas</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="carbon:finance" class="icon"/>
+                    <h2>Ativos</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:outline-request-page" class="icon"/>
+                    <h2>Contas</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:baseline-receipt-long" class="icon"/>
+                    <h2>Gastos</h2>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:outline-inventory-2" class="icon"/>
+                    <h2>Produtos</h2>
                 </a>
             </div>
         </div>

@@ -6,7 +6,6 @@ export default class extends Controller {
     static classes = ['collapsed'];
     
     connect() {
-        // Initialize collapsed state
         this.collapsed = localStorage.getItem('sidebarCollapsed') === 'true';
         this.updateState();
     }
@@ -19,11 +18,11 @@ export default class extends Controller {
     
     toggleMobile() {
         this.element.classList.toggle('active');
-        this.contentTarget.classList.toggle('active');
+        document.body.style.overflow = this.element.classList.contains('active') ? 'hidden' : '';
     }
     
     updateState() {
-        // Update collapsed state
+        // Toggle collapsed class on both sidebar and content
         this.element.classList.toggle(this.collapsedClass, this.collapsed);
         this.contentTarget.classList.toggle(this.collapsedClass, this.collapsed);
         

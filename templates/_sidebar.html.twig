@@ -1,0 +1,59 @@
+{# templates/_sidebar.html.twig #}
+<nav class="sidebar" data-sidebar-target="sidebar">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="sidebar-text mb-0">{{ sidebar_title|default('Enceladus') }}</h3>
+        <div>
+            <button class="btn btn-sm btn-outline-secondary me-2" 
+                    data-controller="theme"
+                    data-action="theme#toggle">
+                <i class="bi" data-theme-target="icon"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" 
+                    data-action="sidebar#toggle">
+                <i class="bi bi-chevron-left" data-sidebar-target="toggleIcon"></i>
+            </button>
+        </div>
+    </div>
+    
+    <ul class="nav flex-column mb-auto">
+        {% for item in navigation_items|default([
+            { path: 'app_home', icon: 'bi-house', label: 'Dashboard' },
+            { path: 'app_asset', icon: 'bi-person', label: 'Profile' },
+            { path: 'app_transactions', icon: 'bi-box-seam', label: 'Products' },
+            { path: 'app_settings', icon: 'bi-gear', label: 'Settings' }
+        ]) %}
+            <li class="nav-item">
+                <a href="{{ path(item.path) }}" 
+                   class="nav-link {{ app.request.get('_route') == item.path ? 'active' : '' }}">
+                    <i class="bi {{ item.icon }}"></i>
+                    <span class="sidebar-text">{{ item.label }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <div class="mt-auto pt-3 border-top border-secondary-subtle">
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" 
+               data-bs-toggle="dropdown">
+                <img src="{{ user_avatar|default(asset('images/avatar.png')) }}" 
+                     alt="User" width="32" height="32" class="rounded-circle me-2">
+                <strong class="sidebar-text">{{ user_name|default('John Doe') }}</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                {% for item in user_menu_items|default([
+                    { path: 'app_asset', label: 'Profile' },
+                    { path: 'app_settings', label: 'Settings' },
+                    { divider: true },
+                    { path: 'app_logout', label: 'Sign out' }
+                ]) %}
+                    {% if item.divider is defined %}
+                        <li><hr class="dropdown-divider"></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{{ path(item.path) }}">{{ item.label }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contas{% endblock %}
+{% block title %}Cartão de crédito{% endblock %}
 
 {% block body %}
     <div class="container d-flex align-items-center">
@@ -8,13 +8,13 @@
             <div class="col text-center">
                 <a href="{{ path('app_list_asset') }}" class="text-decoration-none text-reset">
                     <twig:ux:icon name="lucide:list" class="icon"/>
-                    <h2>Listar Contas</h2>
+                    <h2>Listar Gastos</h2>
                 </a>
             </div>
             <div class="col text-center">
                 <a href="{{ path('app_add_asset') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="streamline-ultimate:bill-cross" class="icon"/>
-                    <h2>Adicionar conta</h2>
+                    <twig:ux:icon name="tabler:cash-plus" class="icon"/>
+                    <h2>Adicionar Gasto</h2>
                 </a>
             </div>
         </div>

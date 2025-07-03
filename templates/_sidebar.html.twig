@@ -3,10 +3,22 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="sidebar-text mb-0">{{ sidebar_title|default('Enceladus') }}</h3>
         <div>
-            <button class="btn btn-sm btn-outline-secondary me-2" 
+            {# <button class="btn btn-sm btn-outline-secondary me-2" 
                     data-controller="theme"
                     data-action="theme#toggle">
                 <i class="bi" data-theme-target="icon"></i>
+                <twig:ux:icon name="ic:baseline-light-mode" />
+                <twig:ux:icon name="ic:baseline-dark-mode" />
+            </button> #}
+            <button class="btn btn-sm btn-outline-secondary me-2"
+                    data-controller="theme"
+                    data-action="theme#toggle">
+                <span data-theme-target="lightIcon">
+                    <twig:ux:icon name="ic:baseline-light-mode" class="icon-s1"/>
+                </span>
+                <span data-theme-target="darkIcon">
+                    <twig:ux:icon name="ic:baseline-dark-mode" class="icon-s1"/>
+                </span>
             </button>
             <button class="btn btn-sm btn-outline-secondary" 
                     data-action="sidebar#toggle">
@@ -17,15 +29,19 @@
     
     <ul class="nav flex-column mb-auto">
         {% for item in navigation_items|default([
-            { path: 'app_home', icon: 'bi-house', label: 'Dashboard' },
-            { path: 'app_asset', icon: 'bi-person', label: 'Profile' },
-            { path: 'app_transactions', icon: 'bi-box-seam', label: 'Products' },
-            { path: 'app_settings', icon: 'bi-gear', label: 'Settings' }
+            { path: 'app_home', icon: 'ic:round-home', label: 'Home' },
+            { path: 'app_asset', icon: 'ic:baseline-real-estate-agent', label: 'Assets' },
+            { path: 'app_transactions', icon: 'ic:outline-payments', label: 'Transações' },
+            { path: 'app_bills', icon: 'ic:baseline-receipt-long', label: 'Contas' },
+            { path: 'app_expenses', icon: 'ic:baseline-request-page', label: 'Gastos' },
+            { path: 'app_credit_card', icon: 'ic:baseline-credit-card', label: 'Cartão de crédito' },
+            { path: 'app_vehicle', icon: 'ic:baseline-directions-car', label: 'Veículos' },
+            { path: 'app_settings', icon: 'ic:baseline-settings', label: 'Configurações' },
         ]) %}
             <li class="nav-item">
-                <a href="{{ path(item.path) }}" 
+                <a href="{{ path(item.path) }}"
                    class="nav-link {{ app.request.get('_route') == item.path ? 'active' : '' }}">
-                    <i class="bi {{ item.icon }}"></i>
+                    <twig:ux:icon name="{{ item.icon }}" class="icon-s1"/>
                     <span class="sidebar-text">{{ item.label }}</span>
                 </a>
             </li>
@@ -38,7 +54,7 @@
                data-bs-toggle="dropdown">
                 <img src="{{ user_avatar|default(asset('icons/symfony.svg')) }}" 
                      alt="User" width="32" height="32" class="rounded-circle me-2">
-                <strong class="sidebar-text">{{ user_name|default('John Doe') }}</strong>
+                <strong class="sidebar-text">{{ user_name|default('Usuário') }}</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                 {% for item in user_menu_items|default([

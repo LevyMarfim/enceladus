@@ -1,8 +1,8 @@
-// assets/controllers/theme_controller.js
+// assets/controllers/theme_controller.js - Alternative approach
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['icon'];
+    static targets = ['lightIcon', 'darkIcon'];
     
     initialize() {
         this.setupSystemThemeListener();
@@ -44,11 +44,19 @@ export default class extends Controller {
     }
     
     updateIcon() {
-        if (!this.hasIconTarget) return;
+        if (!this.hasLightIconTarget || !this.hasDarkIconTarget) return;
         
         const theme = this.getCurrentTheme();
-        this.iconTarget.classList.toggle('bi-sun', theme === 'dark');
-        this.iconTarget.classList.toggle('bi-moon', theme === 'light');
+        
+        if (theme === 'dark') {
+            // Show light icon when in dark mode (to switch to light)
+            this.lightIconTarget.classList.remove('d-none');
+            this.darkIconTarget.classList.add('d-none');
+        } else {
+            // Show dark icon when in light mode (to switch to dark)
+            this.lightIconTarget.classList.add('d-none');
+            this.darkIconTarget.classList.remove('d-none');
+        }
     }
     
     setupSystemThemeListener() {

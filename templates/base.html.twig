@@ -25,7 +25,7 @@
         <!-- Sidebar -->
         {% block sidebar %}
             {% include '_sidebar.html.twig' with {
-                user_name: app.user.username
+                user_name: app.user ? app.user.username ? null
             } %}
         {% endblock %}
         

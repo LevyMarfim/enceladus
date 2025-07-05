@@ -1,4 +1,17 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="{{ app.request.cookies.get('theme')|default('dark') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Enceladus{% endblock %}</title>
+    
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
 
 {% block body %}
 <div class="d-flex justify-content-center align-items-center vh-100 vw-100 bg-grd">
@@ -20,17 +33,6 @@
             <label for="password">Senha</label>
             <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
             <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-            {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <input type="checkbox" name="_remember_me" id="_remember_me">
-                    <label for="_remember_me">Remember me</label>
-                </div>
-            #}
-
             <button class="btn btn-grad btn-lg btn-primary mt-3" type="submit">
                 Entrar
             </button>

@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Assets;
-use App\Entity\Transactions;
+use App\Entity\Asset;
+use App\Entity\Transaction;
 use App\Enums\OperationEnum;
 use App\Enums\TransactionTypeEnum;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -135,7 +135,7 @@ class TransactionForm extends AbstractType
             ])
         // Listra os tickers cadastrados
             ->add('ticker', EntityType::class, [
-                'class' => Assets::class,
+                'class' => Asset::class,
                 'choice_label' => 'ticker',
                 'required' => false,
                 'attr' => [
@@ -154,7 +154,7 @@ class TransactionForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Transactions::class,
+            'data_class' => Transaction::class,
         ]);
     }
 }

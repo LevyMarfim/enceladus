@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enums\AssetTypeEnum;
 use App\Repository\AssetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,6 +28,9 @@ class Asset
      */
     #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'ticker')]
     private Collection $transactions;
+
+    #[ORM\Column(enumType: AssetTypeEnum::class)]
+    private ?AssetTypeEnum $type = null;
 
     public function __construct()
     {
@@ -88,6 +92,18 @@ class Asset
                 $transaction->setTicker(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?AssetTypeEnum
+    {
+        return $this->type;
+    }
+
+    public function setType(AssetTypeEnum $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

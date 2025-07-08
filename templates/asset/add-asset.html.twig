@@ -3,11 +3,11 @@
 {% block title %}Assets{% endblock %}
 
 {% block body %}
-<div class="bg-default d-flex align-items-center">
-    <div class="container">
+{# <div class="bg-default "> #}
+    <div class="container align-items-center">
         <h1>Adicionar asset</h1>
         <p>Adicione uma empresa que negocia alguma ação, FII, ETF, etc.</p>
-        <div class="mt-4">
+        <div class="my-5">
             {{ form_start(form) }}
                 {{ form_errors(form) }}
                 <div class="row mb-3">
@@ -38,5 +38,5 @@
                 {{ form_end(form) }}
         </div>
     </div>
-</div>
+{# </div> #}
 {% endblock %}

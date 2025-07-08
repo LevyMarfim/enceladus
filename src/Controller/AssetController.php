@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Assets;
+use App\Entity\Asset;
 use App\Form\AssetForm;
-use App\Repository\AssetsRepository;
+use App\Repository\AssetRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ final class AssetController extends AbstractController
     #[Route('/asset/add', name: 'app_add_asset')]
     public function addAsset(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $asset = new Assets();
+        $asset = new Asset();
 
         $form = $this->createForm(AssetForm::class, $asset);
         $form->handleRequest($request);
@@ -43,7 +43,7 @@ final class AssetController extends AbstractController
     }
 
     #[Route('/asset/assets', name: 'app_list_asset')]
-    public function listAsset(AssetsRepository $repository): Response
+    public function listAsset(AssetRepository $repository): Response
     {
         return $this->render('asset/list-assets.html.twig', [
             'assets' => $repository->findAll(),

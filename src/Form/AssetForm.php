@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
-use App\Entity\Assets;
+use App\Entity\Asset;
+use App\Enums\AssetTypeEnum;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,13 +39,19 @@ class AssetForm extends AbstractType
                 ],
             ])
             ->add('company', TextType::class, [
+                'label' => 'Empresa',
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
-            ->add('type', TextType::class, [
+            ->add('type', EnumType::class, [
+                'label' => 'Tipo',
+                'class' => AssetTypeEnum::class,
+                'choice_label' => function (AssetTypeEnum $assetType): string {
+                    return $assetType->value;
+                },
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-select',
                 ],
             ])
             ->add('adicionar', SubmitType::class,[
@@ -58,7 +66,7 @@ class AssetForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Assets::class,
+            'data_class' => Asset::class,
         ]);
     }
 }

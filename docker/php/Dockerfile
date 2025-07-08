@@ -29,4 +29,7 @@ COPY ./conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY ./conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY ./conf.d/apcu.ini /usr/local/etc/php/conf.d/apcu.ini
 
+# Set PHP timezone
+RUN echo "date.timezone = America/Fortaleza" > /usr/local/etc/php/conf.d/timezone.ini
+
 EXPOSE 9000

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Company;
 use App\Form\CompanyForm;
+use App\Repository\CompanyRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,15 +20,31 @@ final class CompanyController extends AbstractController
     }
 
     #[Route('/company/new', name: 'app_new_company')]
-    public function addCompany(Request $request): Response
+    public function addCompany(Request $request, EntityManagerInterface $entityManager): Response
     {
         $company = new Company();
 
         $form = $this->createForm(CompanyForm::class, $company);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->persist($company);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_company');
+        }
+
         return $this->render('company/new.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/company/list', name: 'app_list_company')]
+    public function listSector(CompanyRepository $repository): Response
+    {
+        return $this->render('company/list.html.twig', [
+            'companies' => $repository->findAll(),
         ]);
     }
 }

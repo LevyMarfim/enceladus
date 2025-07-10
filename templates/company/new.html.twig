@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Assets{% endblock %}
+{% block title %}Empresa{% endblock %}
 
 {% block body %}
     <div class="container align-items-center">
-        <h1>Adicionar asset</h1>
-        <p>Adicione uma empresa que negocia alguma ação, FII, ETF, etc.</p>
+        <h1>Adicionar empresa</h1>
+        <p>Adicione uma empresa de algum ramo ou setor previamente cadastrado.</p>
         <div class="my-5">
             {{ form_start(form) }}
                 {{ form_errors(form) }}
@@ -18,14 +18,8 @@
                     </div>
                     <div class="col-3">
                         <div class="input-group">
-                            <span class="input-group-text">{{ form_label(form.company) }}</span>
-                            {{ form_widget(form.company) }}
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="input-group">
-                            <span class="input-group-text">{{ form_label(form.type) }}</span>
-                            {{ form_widget(form.type) }}
+                            <span class="input-group-text">{{ form_label(form.sector) }}</span>
+                            {{ form_widget(form.sector) }}
                         </div>
                     </div>
                 </div>

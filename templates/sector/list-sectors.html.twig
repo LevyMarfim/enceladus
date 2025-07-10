@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Setores{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center">
+    <div class="container">
+        <h1>Setores</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Setor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sector in sectors %}
+                    <tr>
+                        <td>{{ sector.id }}</td>
+                        <td>{{ sector.sector }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

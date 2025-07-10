@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sector;
 use App\Form\SectorForm;
+use App\Repository\SectorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,6 +39,14 @@ final class SectorController extends AbstractController
 
         return $this->render('sector/new.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/sector/list', name: 'app_list_sector')]
+    public function listSector(SectorRepository $repository): Response
+    {
+        return $this->render('sector/list-sectors.html.twig', [
+            'sectors' => $repository->findAll(),
         ]);
     }
 }

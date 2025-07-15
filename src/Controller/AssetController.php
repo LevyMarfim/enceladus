@@ -16,7 +16,7 @@ final class AssetController extends AbstractController
     #[Route('/asset', name: 'app_asset')]
     public function index(): Response
     {
-        return $this->render('asset/assets-index.html.twig', [
+        return $this->render('asset/index.html.twig', [
             'controller_name' => 'AssetController',
         ]);
     }
@@ -37,7 +37,7 @@ final class AssetController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('asset/add-asset.html.twig', [
+        return $this->render('asset/add.html.twig', [
             'form' => $form,
         ]);
     }

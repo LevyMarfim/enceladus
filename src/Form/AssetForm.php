@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Asset;
+use App\Entity\Company;
 use App\Enums\AssetTypeEnum;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,10 +40,12 @@ class AssetForm extends AbstractType
                     ]),
                 ],
             ])
-            ->add('company', TextType::class, [
+            ->add('company', EntityType::class, [
                 'label' => 'Empresa',
+                'class' => Company::class,
+                'choice_label' => 'name',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-select',
                 ],
             ])
             ->add('type', EnumType::class, [

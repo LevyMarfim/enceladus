@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Assets{% endblock %}
+{% block title %}Transações{% endblock %}
 
 {% block body %}
     <div class="container d-flex align-items-center">
         <div class="row justify-content-center">
             <div class="col text-center">
-                <a href="{{ path('app_asset_new') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="ic:outline-account-balance" class="icon"/>
-                    <h2>Adicionar ativo</h2>
+                <a href="{{ path('app_transaction_new') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:baseline-wallet" class="icon"/>
+                    <h2>Adicionar transação</h2>
                 </a>
             </div>
             <div class="col text-center">
-                <a href="{{ path('app_asset_list') }}" class="text-decoration-none text-reset">
+                <a href="{{ path('app_transaction_list') }}" class="text-decoration-none text-reset">
                     <twig:ux:icon name="ic:baseline-format-list-numbered" class="icon"/>
-                    <h2>Listar ativos</h2>
+                    <h2>Listar transações</h2>
                 </a>
             </div>
         </div>

@@ -5,19 +5,19 @@ namespace App\Enums;
 enum TransactionTypeEnum: string
 {
     // Transferência
-    case TRANSFER = 'Transfer';
+    case TRANSFER = 'Transferência';
     // Aporte
-    case INVESTMENT = 'Investment';
+    case INVESTMENT = 'Aporte';
     // Resgate
-    case REDEMPTION = 'Redemption';
+    case REDEMPTION = 'Resgate';
     // Dividendo
-    case DIVIDEND = 'Dividend';
+    case DIVIDEND = 'Dividendo';
     // Impostos
-     case TAXES = 'Taxes';
+     case TAXES = 'Taxas';
      // Imposto de Renda Retido na Fonte
      case IRRF = 'IRRF';
      // Investback
      case INVESTBACK = 'Investback';
     //  Frações
-    case FRACTION = 'Fraction';
+    case FRACTION = 'Fração';
 }

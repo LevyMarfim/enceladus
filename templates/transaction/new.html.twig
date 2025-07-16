@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center">
+    <div class="container">
+        <h1>Adicionar movimentação</h1>
+        <p>Adicione uma movimentação.</p>
+        <div class="mt-5">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {# row 1/4 #}
+                <div class="row my-4">
+                    {# col 1/4 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.settlementDate) }}</span>
+                            {{ form_widget(form.settlementDate) }}
+                        </div>
+                    </div>
+                    {# col 2/4 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.transactionDate) }}</span>
+                            {{ form_widget(form.transactionDate) }}
+                        </div>
+                    </div>
+                    {# col 3/4 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.operation) }}</span>
+                            {{ form_widget(form.operation) }}
+                        </div>
+                    </div>
+                    {# col 4/4 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.type) }}</span>
+                            {{ form_widget(form.type) }}
+                        </div>
+                    </div>
+                </div>
+                {# row 2/4 #}
+                <div class="row my-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-1">{{ form_label(form.entry) }}</span>
+                        {{ form_widget(form.entry) }}
+                    </div>
+                </div>
+                {# row 3/4 #}
+                <div class="row my-4">
+                    {# col 1/3 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.value) }}</span>
+                            {{ form_widget(form.value) }}
+                        </div>
+                    </div>
+                    {# col 2/3 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.invoice) }}</span>
+                            {{ form_widget(form.invoice) }}
+                        </div>
+                    </div>
+                    {# col 3/3 #}
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.ticker) }}</span>
+                            {{ form_widget(form.ticker) }}
+                        </div>
+                    </div>
+                </div>
+                {# row 4/4 #}
+                <div class="row my-4">
+                    {# col 1/3 #}
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.amount) }}</span>
+                            {{ form_widget(form.amount) }}
+                        </div>
+                    </div>
+                    {# col 2/3 #}
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-5">{{ form_label(form.unitPrice) }}</span>
+                            {{ form_widget(form.unitPrice) }}
+                        </div>
+                    </div>
+                    {# col 3/3 #}
+                    <div class="col-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-2">{{ form_label(form.comment) }}</span>
+                            {{ form_widget(form.comment) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-3">
+                        {{ form_widget(form.adicionar) }}
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

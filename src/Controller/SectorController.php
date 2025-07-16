@@ -21,7 +21,7 @@ final class SectorController extends AbstractController
         ]);
     }
 
-    #[Route('/sector/new', name: 'app_new_sector')]
+    #[Route('/sector/new', name: 'app_sector_new')]
     public function newSector(Request $request, EntityManagerInterface $entityManager): Response
     {
         $sector = new Sector();
@@ -42,10 +42,10 @@ final class SectorController extends AbstractController
         ]);
     }
 
-    #[Route('/sector/list', name: 'app_list_sector')]
+    #[Route('/sector/list', name: 'app_sector_list')]
     public function listSector(SectorRepository $repository): Response
     {
-        return $this->render('sector/list-sectors.html.twig', [
+        return $this->render('sector/list.html.twig', [
             'sectors' => $repository->findAll(),
         ]);
     }

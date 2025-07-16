@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Transactions;
+use App\Entity\Transaction;
 use App\Form\TransactionForm;
-use App\Repository\TransactionsRepository;
-use DateTime;
+use App\Repository\TransactionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,41 +13,37 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class TransactionsController extends AbstractController
 {
-    #[Route('/transactions', name: 'app_transactions')]
+    #[Route('/transaction', name: 'app_transaction')]
     public function index(): Response
     {
-        return $this->render('transactions/transactions-index.html.twig', [
-            'controller_name' => 'TransactionsController',
-        ]);
+        return $this->render('transaction/index.html.twig');
     }
 
-    #[Route('/transactions/add', name: 'app_add_transactions')]
+    #[Route('/transaction/new', name: 'app_transaction_new')]
     public function addTransatcion(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $transaction = new Transactions();
+        $transaction = new Transaction();
 
         $form = $this->createForm(TransactionForm::class, $transaction);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-
-            $transaction->setDate(new DateTime());
             $entityManager->persist($transaction);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_transaction_list');
         }
 
-        return $this->render('transactions/add-transaction.html.twig', [
+        return $this->render('transaction/new.html.twig', [
             'form' => $form,
         ]);
     }
 
-    #[Route('/transactions/transactions', name: 'app_list_transactions')]
-    public function listAsset(TransactionsRepository $repository): Response
+    #[Route('/transaction/list', name: 'app_transaction_list')]
+    public function listAsset(TransactionRepository $repository): Response
     {
-        return $this->render('transactions/list-transactions.html.twig', [
+        return $this->render('transaction/list.html.twig', [
             'transactions' => $repository->findAll(),
         ]);
     }

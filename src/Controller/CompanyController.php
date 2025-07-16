@@ -19,7 +19,7 @@ final class CompanyController extends AbstractController
         return $this->render('company/index.html.twig');
     }
 
-    #[Route('/company/new', name: 'app_new_company')]
+    #[Route('/company/new', name: 'app_company_new')]
     public function addCompany(Request $request, EntityManagerInterface $entityManager): Response
     {
         $company = new Company();
@@ -40,7 +40,7 @@ final class CompanyController extends AbstractController
         ]);
     }
 
-    #[Route('/company/list', name: 'app_list_company')]
+    #[Route('/company/list', name: 'app_company_list')]
     public function listSector(CompanyRepository $repository): Response
     {
         return $this->render('company/list.html.twig', [

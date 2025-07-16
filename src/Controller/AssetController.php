@@ -16,12 +16,10 @@ final class AssetController extends AbstractController
     #[Route('/asset', name: 'app_asset')]
     public function index(): Response
     {
-        return $this->render('asset/index.html.twig', [
-            'controller_name' => 'AssetController',
-        ]);
+        return $this->render('asset/index.html.twig');
     }
 
-    #[Route('/asset/add', name: 'app_add_asset')]
+    #[Route('/asset/new', name: 'app_asset_new')]
     public function addAsset(Request $request, EntityManagerInterface $entityManager): Response
     {
         $asset = new Asset();
@@ -37,15 +35,15 @@ final class AssetController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('asset/add.html.twig', [
+        return $this->render('asset/new.html.twig', [
             'form' => $form,
         ]);
     }
 
-    #[Route('/asset/assets', name: 'app_list_asset')]
+    #[Route('/asset/assets', name: 'app_asset_list')]
     public function listAsset(AssetRepository $repository): Response
     {
-        return $this->render('asset/list-assets.html.twig', [
+        return $this->render('asset/list.html.twig', [
             'assets' => $repository->findAll(),
         ]);
     }

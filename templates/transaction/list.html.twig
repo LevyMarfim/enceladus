@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assets{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center">
+    <div class="container-fluid">
+        <h1>Transações</h1>
+        <p>Lista de todas as transações financeiras cadastradas.</p>
+        <div class="mt-5">
+            <table class="table table-fs-1">
+                <thead>
+                    <tr class="text-center">
+                        <th>#</th>
+                        <th>Liquidação</th>
+                        <th>Movimentação</th>
+                        <th>Operação</th>
+                        <th>Tipo</th>
+                        <th>Entrada</th>
+                        <th>Valor</th>
+                        <th>Nota Fiscal</th>
+                        <th>Ticker</th>
+                        <th>Quantidade</th>
+                        <th>Preço unitário</th>
+                        <th>Comentário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr class="text-center">
+                            <td>{{ transaction.id }}</td>
+                            <td>{{ transaction.settlementDate|date('d/m/Y') }}</td>
+                            <td>{{ transaction.transactionDate|date('d/m/Y') }}</td>
+                            <td>{{ transaction.operation.value }}</td>
+                            <td>{{ transaction.type.value }}</td>
+                            <td class="text-start">{{ transaction.entry }}</td>
+                            <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
+                            <td>{{ transaction.invoice }}</td>
+                            <td>{{ transaction.ticker ? transaction.ticker.getTicker() : '' }}</td>
+                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.unitPrice }}</td>
+                            <td>{{ transaction.comment }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

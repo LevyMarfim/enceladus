@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo de conta{% endblock %}
+
+{% block body %}
+<h1>Tipo de conta</h1>
+    <div class="container d-flex align-items-center">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <a href="{{ path('app_billtype_new') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:outline-request-page" class="icon"/>
+                    <h3>Adicionar tipo de conta</h3>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ path('app_billtype_list') }}" class="text-decoration-none text-reset">
+                    <twig:ux:icon name="ic:baseline-format-list-numbered" class="icon"/>
+                    <h2>Listar tipos de contas</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -32,7 +32,7 @@ final class CompanyController extends AbstractController
             $entityManager->persist($company);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_company');
+            return $this->redirectToRoute('app_company_list');
         }
 
         return $this->render('company/new.html.twig', [

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipos de contas{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center">
+    <div class="container">
+        <h1>Tipos de contas</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tipo de conta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for billtype in billtypes %}
+                    <tr>
+                        <td>{{ billtype.id }}</td>
+                        <td>{{ billtype.bill }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

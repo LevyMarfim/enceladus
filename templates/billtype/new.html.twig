@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assets{% endblock %}
+
+{% block body %}
+    <div class="container align-items-center">
+        <h1>Adicionar setor</h1>
+        <p>Adicione um setor que enquadre uma empresa ou similar.</p>
+        <div class="my-5">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.bill) }}</span>
+                            {{ form_widget(form.bill) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        {{ form_widget(form.adicionar) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

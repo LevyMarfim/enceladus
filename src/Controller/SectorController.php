@@ -34,7 +34,7 @@ final class SectorController extends AbstractController
             $entityManager->persist($sector);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_sector');
+            return $this->redirectToRoute('app_sector_list');
         }
 
         return $this->render('sector/new.html.twig', [

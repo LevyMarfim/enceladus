@@ -32,7 +32,7 @@ final class AssetController extends AbstractController
             $entityManager->persist($asset);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_asset_list');
         }
 
         return $this->render('asset/new.html.twig', [

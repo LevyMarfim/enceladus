@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contas{% endblock %}
+
+{% block body %}
+{# <div class="bg-default "> #}
+    <div class="container align-items-center">
+        <h1>Adicionar conta</h1>
+        <p>Adicione uma conta de internet, energia elétrica, etc.</p>
+        <div class="my-5">
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="row my-3">
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.dateReference) }}</span>
+                            {{ form_widget(form.dateReference) }}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.bill) }}</span>
+                            {{ form_widget(form.bill) }}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.company) }}</span>
+                            {{ form_widget(form.company) }}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.value) }}</span>
+                            {{ form_widget(form.value) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col">
+                         <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.comment) }}</span>
+                            {{ form_widget(form.comment) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        {{ form_widget(form.adicionar) }}
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{# </div> #}
+{% endblock %}

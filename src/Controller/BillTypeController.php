@@ -16,9 +16,7 @@ final class BillTypeController extends AbstractController
     #[Route('/billtype', name: 'app_billtype')]
     public function index(): Response
     {
-        return $this->render('billtype/index.html.twig', [
-            'controller_name' => 'BilltypeController',
-        ]);
+        return $this->render('billtype/index.html.twig');
     }
 
     #[Route('/billtype/new', name: 'app_billtype_new')]

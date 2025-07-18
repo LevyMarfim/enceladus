@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Bill;
+use App\Form\BillForm;
+use App\Repository\BillRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,9 +16,7 @@ final class BillController extends AbstractController
     #[Route('/bill', name: 'app_bill')]
     public function index(): Response
     {
-        return $this->render('bill/index.html.twig', [
-            'controller_name' => 'BillsController',
-        ]);
+        return $this->render('bill/index.html.twig');
     }
 
     #[Route('/bill/new', name: 'app_bill_new')]
@@ -24,15 +24,15 @@ final class BillController extends AbstractController
     {
         $bill = new Bill();
 
-        $form = $this->createForm(TransactionForm::class, $transaction);
+        $form = $this->createForm(BillForm::class, $bill);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $entityManager->persist($transaction);
+            $entityManager->persist($bill);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_transaction_list');
+            return $this->redirectToRoute('app_bill_list');
         }
 
         return $this->render('bill/new.html.twig', [
@@ -41,10 +41,10 @@ final class BillController extends AbstractController
     }
 
     #[Route('/bill/list', name: 'app_bill_list')]
-    public function listAsset(TransactionRepository $repository): Response
+    public function listAsset(BillRepository $repository): Response
     {
         return $this->render('bill/list.html.twig', [
-            'transactions' => $repository->findAll(),
+            'bills' => $repository->findAll(),
         ]);
     }
 }

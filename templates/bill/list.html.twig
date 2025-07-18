@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contas{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center">
+    <div class="container">
+        <h1>Contas</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Conta</th>
+                    <th>Empresa</th>
+                    <th>Competência</th>
+                    <th>Valor</th>
+                    <th>Comentário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bills %}
+                    <tr>
+                        <td>{{ bill.id }}</td>
+                        <td>{{ bill.bill.getBill }}</td>
+                        <td>{{ bill.company.getName }}</td>
+                        <td>{{ bill.dateReference|date('M/Y') }}</td>
+                        <td>{{ bill.value }}</td>
+                        <td>{{ bill.comment }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

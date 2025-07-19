@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class TransactionsController extends AbstractController
+final class TransactionController extends AbstractController
 {
     #[Route('/transaction', name: 'app_transaction')]
     public function index(): Response

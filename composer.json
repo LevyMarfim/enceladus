@@ -38,6 +38,7 @@
         "symfony/string": "7.3.*",
         "symfony/translation": "7.3.*",
         "symfony/twig-bundle": "7.3.*",
+        "symfony/ux-chartjs": "^2.27",
         "symfony/ux-icons": "^2.27",
         "symfony/ux-turbo": "^2.27.0",
         "symfony/ux-twig-component": "^2.27",

@@ -1,4 +1,3 @@
-{# templates/home/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Enceladus{% endblock %}
@@ -7,42 +6,119 @@
     <h1>Enceladus</h1>
     <span>Gerenciador financeiro e de gastos.</span>
 
-<div class="d-flex align-items-center">
-    <div class="container">
-        <div class="row justify-content-center my-5">
-            <div class="col text-center">
-                <a href="{{ path('app_settings') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="ic:baseline-settings" class="icon"/>
-                    <h2>Configurações</h2>
-                </a>
+    <div class="container my-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Dashboard transações</h2>
             </div>
-            <div class="col text-center">
-                <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="carbon:finance" class="icon"/>
-                    <h2>Assets</h2>
-                </a>
-            </div>
-            <div class="col text-center">
-                <a href="{{ path('app_transaction') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="ep:money" class="icon"/>
-                    <h2>Transações</h2>
-                </a>
-            </div>
-        </div>
-        <div class="row justify-content-center my-5">
-            <div class="col text-center">
-                <a href="{{ path('app_bill') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="solar:bill-list-linear" class="icon"/>
-                    <h2>Contas</h2>
-                </a>
-            </div>
-            <div class="col text-center">
-                <a href="{{ path('app_expenses') }}" class="text-decoration-none text-reset">
-                    <twig:ux:icon name="tabler:cash-move" class="icon"/>
-                    <h2>Gastos</h2>
-                </a>
+            <div class="card-body">
+                <div {{ stimulus_controller('chart', { 
+                    data: chartData|json_encode 
+                }) }}>
+                    <form data-chart-target="filterForm">
+                        <div class="row mb-4">
+                            <div class="col-md-2">
+                                <label for="ticker" class="form-label">Ticker</label>
+                                <select name="ticker" class="form-select">
+                                    <option value="">All</option>
+                                    {% for asset in assets %}
+                                        <option value="{{ asset.id }}" {{ filters.ticker is defined and filters.ticker == asset.id ? 'selected' }}>
+                                            {{ asset.ticker }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="operation" class="form-label">Operação</label>
+                                <select name="operation" class="form-select">
+                                    <option value="">All</option>
+                                    {% for operation in operations %}
+                                        <option value="{{ operation.value }}" {{ filters.operation is defined and filters.operation == operation.value ? 'selected' }}>
+                                            {{ operation.value }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="type" class="form-label">Tipo</label>
+                                <select name="type" class="form-select">
+                                    <option value="">All</option>
+                                    {% for type in transactionTypes %}
+                                        <option value="{{ type.value }}" {{ filters.type is defined and filters.type == type.value ? 'selected' }}>
+                                            {{ type.value }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="year" class="form-label">Ano</label>
+                                <select name="year" class="form-select">
+                                    <option value="">All</option>
+                                    {% for year in years %}
+                                        <option value="{{ year }}" {{ filters.year is defined and filters.year == year ? 'selected' }}>
+                                            {{ year }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="month" class="form-label">Mês</label>
+                                <select name="month" class="form-select">
+                                    <option value="">All</option>
+                                    {% for month in 1..12 %}
+                                        <option value="{{ month }}" {{ filters.month is defined and filters.month == month ? 'selected' }}>
+                                            {{ month|format_month }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div style="height: 400px;">
+                        <canvas data-chart-target="canvas"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    {# <div class="d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center my-5">
+                <div class="col text-center">
+                    <a href="{{ path('app_settings') }}" class="text-decoration-none text-reset">
+                        <twig:ux:icon name="ic:baseline-settings" class="icon"/>
+                        <h2>Configurações</h2>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <a href="{{ path('app_asset') }}" class="text-decoration-none text-reset">
+                        <twig:ux:icon name="carbon:finance" class="icon"/>
+                        <h2>Assets</h2>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <a href="{{ path('app_transaction') }}" class="text-decoration-none text-reset">
+                        <twig:ux:icon name="ep:money" class="icon"/>
+                        <h2>Transações</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-center my-5">
+                <div class="col text-center">
+                    <a href="{{ path('app_bill') }}" class="text-decoration-none text-reset">
+                        <twig:ux:icon name="solar:bill-list-linear" class="icon"/>
+                        <h2>Contas</h2>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <a href="{{ path('app_expenses') }}" class="text-decoration-none text-reset">
+                        <twig:ux:icon name="tabler:cash-move" class="icon"/>
+                        <h2>Gastos</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div> #}
 {% endblock %}

@@ -40,4 +40,51 @@ class TransactionRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findByFilters(array $filters): array
+    {
+        $qb = $this->createQueryBuilder('t');
+        
+        if (!empty($filters['ticker'])) {
+            $qb->andWhere('t.ticker = :ticker')
+            ->setParameter('ticker', $filters['ticker']);
+        }
+        
+        if (!empty($filters['operation'])) {
+            $qb->andWhere('t.operation = :operation')
+            ->setParameter('operation', $filters['operation']);
+        }
+        
+        if (!empty($filters['type'])) {
+            $qb->andWhere('t.type = :type')
+            ->setParameter('type', $filters['type']);
+        }
+        
+        if (!empty($filters['year'])) {
+            $qb->andWhere('EXTRACT(YEAR FROM t.transactionDate) = :year')
+            ->setParameter('year', $filters['year']);
+        }
+        
+        if (!empty($filters['month'])) {
+            $qb->andWhere('EXTRACT(MONTH FROM t.transactionDate) = :month')
+            ->setParameter('month', $filters['month']);
+        }
+        
+        return $qb->orderBy('t.transactionDate', 'ASC')
+                ->getQuery()
+                ->getResult();
+    }
+
+    public function getDistinctYears(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        
+        $sql = 'SELECT DISTINCT EXTRACT(YEAR FROM transaction_date)::integer AS year 
+                FROM transaction 
+                ORDER BY year DESC';
+        
+        $result = $conn->executeQuery($sql)->fetchAllAssociative();
+        
+        return array_column($result, 'year');
+    }
 }

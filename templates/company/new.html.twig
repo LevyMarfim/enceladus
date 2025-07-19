@@ -9,20 +9,38 @@
         <div class="my-5">
             {{ form_start(form) }}
                 {{ form_errors(form) }}
+                {# row 1/2 #}
                 <div class="row mb-3">
+                    {# col 1/4 #}
                     <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text">{{ form_label(form.name) }}</span>
                             {{ form_widget(form.name) }}
                         </div>
                     </div>
+                    {# col 2/4 #}
                     <div class="col-3">
                         <div class="input-group">
                             <span class="input-group-text">{{ form_label(form.sector) }}</span>
                             {{ form_widget(form.sector) }}
                         </div>
                     </div>
+                    {# col 3/4 #}
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.cnpj) }}</span>
+                            {{ form_widget(form.cnpj) }}
+                        </div>
+                    </div>
+                    {# col 4/4 #}
+                    <div class="col-3">
+                        <div class="input-group">
+                            <span class="input-group-text">{{ form_label(form.isin) }}</span>
+                            {{ form_widget(form.isin) }}
+                        </div>
+                    </div>
                 </div>
+                {# row 2/2 #}
                 <div class="row mt-4">
                     <div class="col">
                         {{ form_widget(form.adicionar) }}

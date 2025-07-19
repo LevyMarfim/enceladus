@@ -22,7 +22,7 @@ class SectorForm extends AbstractType
             ->add('adicionar', SubmitType::class,[
                 'label' => 'Adicionar setor',
                 'attr' =>[
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-success'
                 ],
             ])
         ;

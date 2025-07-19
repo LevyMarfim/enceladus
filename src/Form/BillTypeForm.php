@@ -22,7 +22,7 @@ class BillTypeForm extends AbstractType
             ->add('adicionar', SubmitType::class,[
                 'label' => 'Adicionar tipo de conta',
                 'attr' =>[
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-success'
                 ],
             ])
         ;

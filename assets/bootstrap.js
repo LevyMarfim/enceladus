@@ -14,3 +14,6 @@ import TickerValidationController from './controllers/ticker_validation_controll
 
 // const application = Application.start();
 app.register('ticker-validation', TickerValidationController);
+
+import CnpjController from './controllers/cnpj_controller.js';
+app.register('cnpj-mask', CnpjController);

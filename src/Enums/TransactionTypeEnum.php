@@ -12,12 +12,16 @@ enum TransactionTypeEnum: string
     case REDEMPTION = 'Resgate';
     // Dividendo
     case DIVIDEND = 'Dividendo';
-    // Impostos
-     case TAXES = 'Taxas';
+    // Taxa liquidação
+     case SETTLEMENT_TAX = 'Taxa liquidação';
+     // Taxa operacional
+     case OPERATIONAL_TAX = 'Taxa operacional';
      // Imposto de Renda Retido na Fonte
      case IRRF = 'IRRF';
      // Investback
      case INVESTBACK = 'Investback';
     //  Frações
     case FRACTION = 'Fração';
+    //  Emolumentos
+    case EMOLUMENT = 'Emolumentos';
 }

@@ -61,7 +61,7 @@ class AssetForm extends AbstractType
             ->add('adicionar', SubmitType::class,[
                 'label' => 'Adicionar asset',
                 'attr' =>[
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-success'
                 ],
             ])
         ;

@@ -11,8 +11,9 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Tempresa</th>
+                    <th>Empresa</th>
                     <th>Ticker</th>
+                    <th>Tipo</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                         <td>{{ asset.id }}</td>
                         <td>{{ asset.company.getName }}</td>
                         <td>{{ asset.ticker }}</td>
+                        <td>{{ asset.type.value }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

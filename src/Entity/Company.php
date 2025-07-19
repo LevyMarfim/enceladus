@@ -34,6 +34,12 @@ class Company
     #[ORM\OneToMany(targetEntity: Bill::class, mappedBy: 'company')]
     private Collection $bills;
 
+    #[ORM\Column(length: 32)]
+    private ?string $cnpj = null;
+
+    #[ORM\Column(length: 16, nullable: true)]
+    private ?string $isin = null;
+
     public function __construct()
     {
         $this->assets = new ArrayCollection();
@@ -125,6 +131,30 @@ class Company
                 $bill->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCnpj(): ?string
+    {
+        return $this->cnpj;
+    }
+
+    public function setCnpj(string $cnpj): static
+    {
+        $this->cnpj = $cnpj;
+
+        return $this;
+    }
+
+    public function getIsin(): ?string
+    {
+        return $this->isin;
+    }
+
+    public function setIsin(?string $isin): static
+    {
+        $this->isin = $isin;
 
         return $this;
     }

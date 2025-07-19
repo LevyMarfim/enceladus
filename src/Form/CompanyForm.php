@@ -29,10 +29,27 @@ class CompanyForm extends AbstractType
                     'class' => 'form-select',
                 ],
             ])
+            ->add('cnpj', null, [
+                'label' => 'CNPJ',
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => '00.000.000/0000-00',
+                    // 'maxlength' => '18',
+                    // 'data-mask' => 'cnpj',
+                    'data-controller' => 'cnpj-mask',
+                    'data-cnpj-mask-target' => 'input',
+                ],
+            ])
+            ->add('isin', null, [
+                'label' => 'ISIN',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('adicionar', SubmitType::class,[
-                'label' => 'Adicionar setor',
+                'label' => 'Adicionar empresa',
                 'attr' =>[
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-success'
                 ],
             ])
         ;

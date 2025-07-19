@@ -18,6 +18,7 @@
                         <th>Tipo</th>
                         <th>Entrada</th>
                         <th>Valor</th>
+                        <th>Subtotal</th>
                         <th>Nota Fiscal</th>
                         <th>Ticker</th>
                         <th>Quantidade</th>
@@ -26,7 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% set subtotal = 0 %}
                     {% for transaction in transactions %}
+                        {% set subtotal = subtotal + transaction.value %}
                         <tr class="text-center">
                             <td>{{ transaction.id }}</td>
                             <td>{{ transaction.settlementDate|date('d/m/Y') }}</td>
@@ -35,6 +38,7 @@
                             <td>{{ transaction.type.value }}</td>
                             <td class="text-start">{{ transaction.entry }}</td>
                             <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
+                            <td class="text-end">{{ subtotal|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
                             <td>{{ transaction.invoice }}</td>
                             <td>{{ transaction.ticker ? transaction.ticker.getTicker() : '' }}</td>
                             <td>{{ transaction.amount }}</td>

@@ -18,7 +18,10 @@ export default class extends Controller {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'top' },
+                    legend: {
+                        position: 'top',
+                        display: false,
+                    },
                     tooltip: {
                         callbacks: {
                             label: (context) => 'R$ ' + context.raw.toLocaleString('pt-BR', {
@@ -50,7 +53,7 @@ export default class extends Controller {
         }
     }
 
-    debouncedUpdate = this.debounce(() => this.updateChart(), 300);
+    debouncedUpdate = this.debounce(() => this.updateChart(), 100);
 
     debounce(func, timeout) {
         let timer;

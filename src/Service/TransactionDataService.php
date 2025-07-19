@@ -41,7 +41,7 @@ class TransactionDataService
             'labels' => array_column($data, 'label'),
             'datasets' => [
                 [
-                    'label' => 'Transaction Values',
+                    // 'label' => 'Transaction Values',
                     'data' => array_column($data, 'value'),
                     'backgroundColor' => '#4f46e5',
                     'borderColor' => '#4f46e5',

@@ -75,16 +75,25 @@ class TransactionRepository extends ServiceEntityRepository
                 ->getResult();
     }
 
+    // public function getDistinctYears(): array
+    // {
+    //     $conn = $this->getEntityManager()->getConnection();
+        
+    //     $sql = 'SELECT DISTINCT EXTRACT(YEAR FROM transaction_date)::integer AS year 
+    //             FROM transaction 
+    //             ORDER BY year DESC';
+        
+    //     $result = $conn->executeQuery($sql)->fetchAllAssociative();
+        
+    //     return array_column($result, 'year');
+    // }
+
     public function getDistinctYears(): array
     {
-        $conn = $this->getEntityManager()->getConnection();
-        
-        $sql = 'SELECT DISTINCT EXTRACT(YEAR FROM transaction_date)::integer AS year 
-                FROM transaction 
-                ORDER BY year DESC';
-        
-        $result = $conn->executeQuery($sql)->fetchAllAssociative();
-        
-        return array_column($result, 'year');
+        return $this->createQueryBuilder('t')
+            ->select('DISTINCT YEAR(t.transactionDate) as year')
+            ->orderBy('year', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

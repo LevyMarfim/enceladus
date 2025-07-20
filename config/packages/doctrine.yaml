@@ -31,7 +31,7 @@ doctrine:
                 EXTRACT: DoctrineExtensions\Query\Postgresql\Extract
                 # DATE_PART: DoctrineExtensions\Query\Postgresql\DatePart
                 YEAR: DoctrineExtensions\Query\Postgresql\Year
-                # MONTH: DoctrineExtensions\Query\Postgresql\Month
+                MONTH: DoctrineExtensions\Query\Postgresql\Month
 
 when@test:
     doctrine:

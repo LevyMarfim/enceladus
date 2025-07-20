@@ -32,9 +32,17 @@ final class HomeController extends AbstractController
         $filters = $request->query->all();
         $chartData = $transactionDataService->getChartData($filters);
 
+        // if ($request->isXmlHttpRequest()) {
+        //     return $this->json([
+        //         'chartData' => $chartData,
+        //     ]);
+        // }
+
         if ($request->isXmlHttpRequest()) {
             return $this->json([
                 'chartData' => $chartData,
+            ], 200, [], [
+                'groups' => ['chart_data'] // Add this if you need serialization groups
             ]);
         }
         

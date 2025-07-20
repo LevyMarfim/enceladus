@@ -61,12 +61,12 @@ class TransactionRepository extends ServiceEntityRepository
         }
         
         if (!empty($filters['year'])) {
-            $qb->andWhere('EXTRACT(YEAR FROM t.transactionDate) = :year')
+            $qb->andWhere('YEAR(t.transactionDate) = :year')
             ->setParameter('year', $filters['year']);
         }
         
         if (!empty($filters['month'])) {
-            $qb->andWhere('EXTRACT(MONTH FROM t.transactionDate) = :month')
+            $qb->andWhere('MONTH(t.transactionDate) = :month')
             ->setParameter('month', $filters['month']);
         }
         

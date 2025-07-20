@@ -3,9 +3,7 @@
 
 namespace App\Service;
 
-use App\Entity\Transaction;
 use App\Repository\TransactionRepository;
-use DateTime;
 
 class TransactionDataService
 {

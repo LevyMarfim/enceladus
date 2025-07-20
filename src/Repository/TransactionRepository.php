@@ -16,31 +16,6 @@ class TransactionRepository extends ServiceEntityRepository
         parent::__construct($registry, Transaction::class);
     }
 
-    //    /**
-    //     * @return Transaction[] Returns an array of Transaction objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Transaction
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-
     public function findByFilters(array $filters): array
     {
         $qb = $this->createQueryBuilder('t');
@@ -74,19 +49,6 @@ class TransactionRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
-
-    // public function getDistinctYears(): array
-    // {
-    //     $conn = $this->getEntityManager()->getConnection();
-        
-    //     $sql = 'SELECT DISTINCT EXTRACT(YEAR FROM transaction_date)::integer AS year 
-    //             FROM transaction 
-    //             ORDER BY year DESC';
-        
-    //     $result = $conn->executeQuery($sql)->fetchAllAssociative();
-        
-    //     return array_column($result, 'year');
-    // }
 
     public function getDistinctYears(): array
     {

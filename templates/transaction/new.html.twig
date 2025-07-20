@@ -96,6 +96,51 @@
                         </div>
                     </div>
                 </div>
+                {# Teste Fees #}
+                <div class="mb-3" data-controller="collection">
+                    <label class="form-label">Taxas/Impostos</label>
+                    <div class="fee-collection" data-collection-target="container">
+                        {% for fee in form.fees %}
+                            <div class="fee-item row mb-2">
+                                <div class="col-md-5">
+                                    {{ form_row(fee.type) }}
+                                </div>
+                                <div class="col-md-5">
+                                    {{ form_row(fee.amount) }}
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-danger" 
+                                            data-action="collection#removeItem">
+                                        Remover
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" 
+                            data-action="collection#addItem">
+                        Adicionar Taxa
+                    </button>
+                    
+                    <template data-collection-target="template">
+                        <div class="fee-item row mb-2">
+                            <div class="col-md-5">
+                                {{ form_row(form.fees.vars.prototype.type) }}
+                            </div>
+                            <div class="col-md-5">
+                                {{ form_row(form.fees.vars.prototype.amount) }}
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" 
+                                        data-action="collection#removeItem">
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                {# Teste Fees #}
                 <div class="row my-4">
                     <div class="col-3">
                         {{ form_widget(form.adicionar) }}

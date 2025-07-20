@@ -49,6 +49,9 @@ class Transaction
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $comment = null;
 
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $fees = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -183,6 +186,39 @@ class Transaction
     {
         $this->comment = $comment;
 
+        return $this;
+    }
+
+    public function getFees(): ?array 
+    {
+        return $this->fees;
+    }
+
+    public function setFees(array $fees): static
+    {
+        $this->fees = $fees;
+        return $this;
+    }
+
+    // Validate the Fee
+    public function isValidFeeType(string $type): bool
+    {
+        $allowedTypes = [
+            TransactionTypeEnum::TAXES->value,
+            TransactionTypeEnum::SETTLEMENT_TAX->value,
+            TransactionTypeEnum::OPERATIONAL_TAX->value,
+            TransactionTypeEnum::CUSTODY_TAX->value
+        ];
+        
+        return in_array($type, $allowedTypes);
+    }
+    public function addFee(string $name, float $amount): static
+    {
+        if (!$this->isValidFeeType($name)) {
+            throw new \InvalidArgumentException(sprintf('Invalid fee type "%s"', $name));
+        }
+        
+        $this->fees[$name] = $amount;
         return $this;
     }
 }

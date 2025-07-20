@@ -6,8 +6,10 @@ use App\Entity\Asset;
 use App\Entity\Transaction;
 use App\Enums\OperationEnum;
 use App\Enums\TransactionTypeEnum;
+use App\Form\Type\FeeTypeForm;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -151,6 +153,19 @@ class TransactionForm extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Enter a comment',
+                ],
+                'required' => false
+            ])
+            ->add('fees', CollectionType::class, [
+                'entry_type' => FeeTypeForm::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Taxas/Impostos',
+                'attr' => [
+                    'class' => 'fee-collection',
+                    'data-controller' => 'collection'
                 ],
                 'required' => false
             ])

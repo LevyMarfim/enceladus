@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Assets{% endblock %}
+{% block title %}Transações{% endblock %}
 
 {% block body %}
 <div class="d-flex align-items-center">
@@ -18,6 +18,7 @@
                         <th>Tipo</th>
                         <th>Entrada</th>
                         <th>Valor</th>
+                        <th>Taxas</th>
                         <th>Subtotal</th>
                         <th>Nota Fiscal</th>
                         <th>Ticker</th>
@@ -27,9 +28,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set subtotal = 0 %}
+                    {% set running_total = 0 %}
                     {% for transaction in transactions %}
-                        {% set subtotal = subtotal + transaction.value %}
+                        {# Safely get transaction value #}
+                        {% set transaction_value = transaction.value is iterable ? 
+                            transaction.value|reduce((sum, val) => sum + val, 0) : 
+                            (transaction.value ?? 0) %}
+
+                        {# Process fees from JSON array #}
+                        {% set taxes_display = [] %}
+                        {% set taxes_total = 0 %}
+                        
+                        {% if transaction.fees is defined and transaction.fees is not null and transaction.fees is iterable %}
+                            {% for fee in transaction.fees %}
+                                {% if fee.type is defined and fee.amount is defined %}
+                                    {% set taxes_total = taxes_total + (fee.amount ?? 0) %}
+                                    {% set taxes_display = taxes_display|merge([{
+                                        'name': fee.type,
+                                        'value': fee.amount
+                                    }]) %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {# Update running total #}
+                        {% set running_total = running_total + transaction_value - taxes_total %}
+
                         <tr class="text-center">
                             <td>{{ transaction.id }}</td>
                             <td>{{ transaction.settlementDate|date('d/m/Y') }}</td>
@@ -37,8 +61,23 @@
                             <td>{{ transaction.operation.value }}</td>
                             <td>{{ transaction.type.value }}</td>
                             <td class="text-start">{{ transaction.entry }}</td>
-                            <td class="text-end">{{ transaction.value|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
-                            <td class="text-end">{{ subtotal|format_currency('BRL', {fraction_digit: 2, format_width:16, padding_position:'after_prefix'}) }}</td>
+                            <td class="text-end">{{ transaction_value|format_currency('BRL') }}</td>
+                            
+                            {# Tax details column #}
+                            <td class="text-start">
+                                {% if taxes_display|length > 0 %}
+                                    <ul class="list-unstyled mb-0">
+                                        {% for tax in taxes_display %}
+                                            <li>{{ tax.name }}: {{ tax.value|format_currency('BRL') }}</li>
+                                        {% endfor %}
+                                        <li class="fw-bold">Total: {{ taxes_total|format_currency('BRL') }}</li>
+                                    </ul>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            
+                            <td class="text-end">{{ running_total|format_currency('BRL') }}</td>
                             <td>{{ transaction.invoice }}</td>
                             <td>{{ transaction.ticker ? transaction.ticker.getTicker() : '' }}</td>
                             <td>{{ transaction.amount }}</td>

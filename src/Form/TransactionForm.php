@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class TransactionForm extends AbstractType
 {
@@ -162,6 +164,9 @@ class TransactionForm extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'constraints' => [
+                    new Callback([$this, 'validateFeeTypes']),
+                ],
                 // 'label' => 'Taxas/Impostos',
                 'label' => false,
                 'attr' => [
@@ -184,5 +189,18 @@ class TransactionForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => Transaction::class,
         ]);
+    }
+    
+    public function validateFeeTypes($fees, ExecutionContextInterface $context)
+    {
+        $types = [];
+        foreach ($fees as $index => $fee) {
+            if (in_array($fee['type'], $types)) {
+                $context->buildViolation('Você não pode adicionar o mesmo tipo de taxa mais de uma vez.')
+                    ->atPath("fees[$index].type")
+                    ->addViolation();
+            }
+            $types[] = $fee['type'];
+        }
     }
 }

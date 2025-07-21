@@ -24,7 +24,8 @@ class FeeTypeForm extends AbstractType
                 ],
                 'choice_label' => fn($choice) => $choice->value,
                 'attr' => [
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'data-action' => 'change->collection#checkDuplicate',
                 ],
                 'label' => 'Taxa',
             ])

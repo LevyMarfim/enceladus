@@ -85,6 +85,7 @@
     {# Fees Section #}
     <div class="mb-3" data-controller="collection">
         <label class="form-label">Taxas/Impostos</label>
+        <div id="fee-errors" class="alert alert-danger d-none"></div>
         <div class="fee-collection" data-collection-target="container">
             {% for fee in form.fees %}
                 <div class="fee-item row mb-2">

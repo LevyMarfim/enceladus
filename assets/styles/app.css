@@ -158,3 +158,15 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+
+/* Transaction duplicates */
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+}

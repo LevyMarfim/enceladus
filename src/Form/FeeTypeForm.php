@@ -1,6 +1,6 @@
 <?php
 // src/Form/Type/FeeType.php
-namespace App\Form\Type;
+namespace App\Form;
 
 use App\Enums\TransactionTypeEnum;
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +23,10 @@ class FeeTypeForm extends AbstractType
                     TransactionTypeEnum::CUSTODY_TAX
                 ],
                 'choice_label' => fn($choice) => $choice->value,
-                'attr' => ['class' => 'form-select']
+                'attr' => [
+                    'class' => 'form-select'
+                ],
+                'label' => 'Taxa',
             ])
             ->add('amount', NumberType::class, [
                 'scale' => 2,
@@ -32,7 +35,8 @@ class FeeTypeForm extends AbstractType
                     'class' => 'form-control',
                     'step' => '0.01',
                     'min' => '0'
-                ]
+                ],
+                'label' => 'Valor',
             ]);
     }
 

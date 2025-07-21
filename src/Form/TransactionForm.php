@@ -6,7 +6,7 @@ use App\Entity\Asset;
 use App\Entity\Transaction;
 use App\Enums\OperationEnum;
 use App\Enums\TransactionTypeEnum;
-use App\Form\Type\FeeTypeForm;
+use App\Form\FeeTypeForm;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -162,7 +162,8 @@ class TransactionForm extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label' => 'Taxas/Impostos',
+                // 'label' => 'Taxas/Impostos',
+                'label' => false,
                 'attr' => [
                     'class' => 'fee-collection',
                     'data-controller' => 'collection'

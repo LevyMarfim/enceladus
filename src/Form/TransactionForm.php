@@ -165,14 +165,14 @@ class TransactionForm extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'constraints' => [
-                    new Callback([$this, 'validateFeeTypes']),
+                    new Callback([$this, 'validateUniqueFeeTypes']),
                 ],
                 // 'label' => 'Taxas/Impostos',
                 'label' => false,
-                'attr' => [
-                    'class' => 'fee-collection',
-                    'data-controller' => 'collection'
-                ],
+                // 'attr' => [
+                //     'class' => 'fee-collection',
+                //     'data-controller' => 'collection'
+                // ],
                 'required' => false
             ])
             ->add('adicionar', SubmitType::class,[
@@ -191,12 +191,19 @@ class TransactionForm extends AbstractType
         ]);
     }
     
-    public function validateFeeTypes($fees, ExecutionContextInterface $context)
+    public function validateUniqueFeeTypes($fees, ExecutionContextInterface $context)
     {
         $types = [];
         foreach ($fees as $index => $fee) {
+            if (empty($fee['type'])) {
+                $context->buildViolation('Por favor selecione um tipo de taxa')
+                    ->atPath("fees[$index].type")
+                    ->addViolation();
+                continue;
+            }
+            
             if (in_array($fee['type'], $types)) {
-                $context->buildViolation('Você não pode adicionar o mesmo tipo de taxa mais de uma vez.')
+                $context->buildViolation('Este tipo de taxa já foi adicionado')
                     ->atPath("fees[$index].type")
                     ->addViolation();
             }

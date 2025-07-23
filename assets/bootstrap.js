@@ -17,3 +17,6 @@ app.register('ticker-validation', TickerValidationController);
 
 import CnpjController from './controllers/cnpj_controller.js';
 app.register('cnpj-mask', CnpjController);
+
+import CollectionController from './controllers/collection_controller.js';
+app.register('collection', CollectionController);

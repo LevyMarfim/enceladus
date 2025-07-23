@@ -8,6 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class FeeTypeForm extends AbstractType
 {
@@ -23,21 +26,39 @@ class FeeTypeForm extends AbstractType
                     TransactionTypeEnum::CUSTODY_TAX
                 ],
                 'choice_label' => fn($choice) => $choice->value,
+                'label' => 'Taxa',
+                'placeholder' => 'Selecione um tipo',
                 'attr' => [
                     'class' => 'form-select',
-                    'data-action' => 'change->collection#checkDuplicate',
+                    // 'data-action' => 'change->collection#checkDuplicate',
                 ],
-                'label' => 'Taxa',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor selecione um tipo de taxa',
+                    ]),
+                ],
             ])
             ->add('amount', NumberType::class, [
+                'label' => 'Valor',
                 'scale' => 2,
                 'html5' => true,
                 'attr' => [
                     'class' => 'form-control',
+                    'inputmode' => 'decimal',
                     'step' => '0.01',
-                    'min' => '0'
+                    'pattern' => '^\d+(\.\d{1,2})?$',
+                    'oninput' => "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1').replace(/^(\d*\.\d{0,2}).*$/, '$1');",
+                    'data-action' => 'input->collection#validateAmount',
+                    'placeholder' => '0.00',
                 ],
-                'label' => 'Valor',
+                'constraints' => [
+                    new NotBlank(['message' => 'Por favor informe o valor']),
+                    new Regex([
+                        'pattern' => '/^\d+(\.\d{1,2})?$/',
+                        'message' => 'Informe um valor numérico com até 2 casas decimais'
+                    ]),
+                    new GreaterThan(['value' => 0, 'message' => 'O valor deve ser maior que zero'])
+                ]
             ]);
     }
 
